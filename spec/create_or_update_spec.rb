@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
+
 RSpec.describe CreateOrUpdate do
-  it "has a version number" do
+  it 'has a version number' do
     expect(CreateOrUpdate::VERSION).not_to be nil
   end
 
@@ -12,9 +14,9 @@ RSpec.describe CreateOrUpdate do
 
     context 'when no record matches the identifier' do
       it 'creates a new record with the given attributes' do
-        expect {
+        expect do
           DummyModel.create_or_update(unique_attribute: unique_attribute, other_attribute: other_attribute)
-        }.to change(DummyModel, :count).by(1)
+        end.to change(DummyModel, :count).by(1)
 
         record = DummyModel.find_by(unique_attribute: unique_attribute)
         expect(record.other_attribute).to eq(other_attribute)
@@ -27,9 +29,9 @@ RSpec.describe CreateOrUpdate do
       end
 
       it 'updates the existing record with new attributes' do
-        expect {
+        expect do
           DummyModel.create_or_update(unique_attribute: unique_attribute, other_attribute: new_other_attribute)
-        }.not_to change(DummyModel, :count)
+        end.not_to change(DummyModel, :count)
 
         record = DummyModel.find_by(unique_attribute: unique_attribute)
         expect(record.other_attribute).to eq(new_other_attribute)
