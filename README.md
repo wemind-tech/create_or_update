@@ -1,8 +1,20 @@
+[![Ruby](https://github.com/wemind-tech/create_or_update/actions/workflows/ruby.yml/badge.svg)](https://github.com/wemind-tech/create_or_update/actions/workflows/ruby.yml)
+
 # CreateOrUpdate
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/create_or_update`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem provides functionality to create or update resources with a simple method.
 
-TODO: Delete this and the text above, and describe your gem
+    $ john = User.create(first_name: 'john', last_name: 'doe')
+    $ puts john 
+    $ => #<User id: 1, first_name: 'john', last_name: 'doe', email: 'nil'>
+
+    $ User.create_or_update(first_name: 'john', last_name: 'doe', email: 'john@doe.com')
+    $ User.find(1)
+    $ => #<User id: 1, first_name: 'john', last_name: 'doe', email: 'john@doe.com'>
+
+    $ User.create_or_update(first_name: 'john', last_name: 'bar', email: 'john@bar.com')
+    $ User.find(2)
+    $ => #<User id: 2, first_name: 'john', last_name: 'bar', email: 'john@bar.com'>
 
 ## Installation
 
