@@ -15,6 +15,10 @@ module CreateOrUpdate
     class_attribute :identifiers
   end
 
+  def print_identifiers
+    self.class.identifiers.map{ |field| "#{field} : #{self.send(field)} " }.join
+  end
+
   class_methods do
     def identifier(*attrs)
       self.identifiers = attrs
