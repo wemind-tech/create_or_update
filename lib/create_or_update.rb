@@ -16,7 +16,7 @@ module CreateOrUpdate
   end
 
   def print_identifiers
-    class.identifiers.map{ |field| "#{field} : #{send(field)} " }.join
+    self.class.identifiers.map{ |field| "#{field} : #{self.send(field)} " }.join
   end
 
   class_methods do
