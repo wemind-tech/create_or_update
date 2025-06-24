@@ -11,13 +11,14 @@ ActiveRecord::Schema.define do
   create_table :dummy_models, force: true do |t|
     t.string :unique_attribute
     t.string :other_attribute
+    t.string :third_attribute
   end
 end
 
 # Define a dummy model for testing the concern
 class DummyModel < ActiveRecord::Base
   include CreateOrUpdate
-  identifier :unique_attribute
+  identifier :unique_attribute, :other_attribute
 end
 
 RSpec.configure do |config|

@@ -15,8 +15,9 @@ module CreateOrUpdate
     class_attribute :identifiers
   end
 
-  def print_identifiers
-    self.class.identifiers.map{ |field| "#{field} : #{self.send(field)} " }.join
+  def print_identifiers(exclude: [])
+    filtered_identifiers = self.class.identifiers.reject { |field| exclude.include?(field) }
+    filtered_identifiers.map { |field| "#{field} : #{send(field)}" }.join(' | ')
   end
 
   class_methods do
